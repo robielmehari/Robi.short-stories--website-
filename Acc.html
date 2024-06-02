@@ -1,0 +1,173 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account Website</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+</head>
+<style>
+  /* style.css */
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+ .cancelbtn {
+    width: 100%;
+  }
+}
+</style>
+<script>
+  
+  const excel_file = document.getElementById('excel_file');
+
+excel_file.addEventListener('change', (event) => {
+  if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type)) {
+    document.getElementById('excel_data').innerHTML = '<div class="alert alert-danger">Only.xlsx or.xls file format are allowed</div>';
+    return false;
+  }
+
+  var reader = new FileReader();
+  reader.readAsArrayBuffer(event.target.files[0]);
+
+  reader.onload = function() {
+    var data = new Uint8Array(reader.result);
+    var work_book = XLSX.read(data, { type: 'array' });
+
+    var sheet_name = work_book.SheetNames;
+    var sheet_data = work_book.Sheets[sheet_name[0]];
+
+    var table_output = '<table>';
+    for (var row = 0; row < sheet_data.data.length; row++) {
+      table_output += '<tr>';
+      for (var cell = 0; cell < sheet_data.data[row].length; cell++) {
+        table_output += '<td>' + sheet_data[row][cell] + '</td>';
+      }
+      table_output += '</tr>';
+    }
+    table_output += '</table>';
+
+    document.getElementById('excel_data').innerHTML = table_output;
+  };
+});
+</script>
+<body>
+            <a href="Home2.html"><button> Skip Membership 🔙🔸️ </button></a>
+	<!-- Login Form -->
+	<form action="action_page.php" method="post">
+		<div class="imgcontainer">
+			<img src="Test6.png" alt="Avatar" class="avatar">
+		</div>
+		<div class="container">
+			<label for="uname"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" required>
+			<label for="psw"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" required>
+			<button type="submit">Login</button>
+			<label>
+				<input type="checkbox" checked="checked" name="remember"> Remember me
+			</label>
+		</div>
+		<div class="container" style="background-color:#f1f1f1">
+			<button type="button" class="cancelbtn">Cancel</button>
+			<span class="psw">Forgot <a href="#">password?</a></span>
+		</div>
+	</form>
+	
+	<!-- Registration Form -->
+	<form action="action_page.php" method="post">
+		<div class="container">
+			<label for="uname"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" required>
+			<label for="psw"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" required>
+			<label for="email"><b>Email</b></label>
+			<input type="email" placeholder="Enter Email" name="email" required>
+			<button type="submit">Register</button>
+		</div>
+	</form>
+	<!-- Excel Database ( simulated ) -->
+	<table id="excel-db">
+	  
+		<tr>
+			<th>Username</th>
+			<th>Password</th>
+			<th>Email</th>
+		</tr>
+		<br>
+		<tr>
+			<td>user</td>
+			<td>password</td>
+			<td>user@example.com</td>
+		</tr>
+	<input type="file" id="excel_file" />
+<div id="excel_data" class="mt-5"></div>
+	</table>
+	
+	<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ሮቤል ሓጸርቲ ዛንታታት</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.search-bar {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search-input {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+#search-btn {
+    width: 30%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    clear: both;
+}
+</style>
+<script>
+  const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const stories = document.querySelectorAll('section');
+
+searchBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const searchTerm = searchInput.value.toLowerCase();
+    stories.forEach((story) => {
+        const storyText = story.textContent.toLowerCase();
+        if (storyText.includes(searchTerm)) {
+            story.style.display = 'block';
+        } else {
+            story.style.display = 'none';
+        }
+    });
+});
+</script>
+<body>
+    <nav>
+           <a href="index.html"><button> Home</button></a>
+           <a href="about.html"><button> Contact us </button></a>
+           <a href="Home.html"><button> Central stories</button></a>
+           <a href="acc.html"><button>Members’ acc.</button></a>
+    </nav>
+    <!-- Header Section -->
+    <header>
+        <h1> ብሉጻት ሓጸርቲ ዛንታታት </h1>
+        <nav>
+            <ul>
+                <li><a href="#story1">📕ፍቕራዊ ዛንታ</a></li>
+                <li><a href="#story2">📘ልቢ ወለድ</a></li>
+                <li><a href="#story3">📗ምሽጥር</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Story Section -->
+    <section id="story1">
+        <h2> 📖📚Love story </h2>
+        <em>Underloading </em>....<i>paying more in shipping costs.... </i><br>
+        <p>Must Read 7 Love Story Books in English ; 1. The Unproposed Guy ; 2. The Book of Everlasting Things ; 3. Till the Last Breath ; 4. Accidentally Married ; 5. You Are ....</p>
+        <img src="bees14.gif" alt="Story 1 Image">
+    </section>
+    
+    <section id="story2">
+        <h2> 📖📚Science fiction </h2>
+         <em>Underloading </em>....<i>paying more in shipping costs.... </i><br>
+        <p>Science Fiction Books · The X-Files: Earth Children Are Weird · Space Taxi: Archie Takes Flight · Your Pal Fred · AstroNuts Mission One: The Plant Planet · The City ....</p>
+        <img src="Bees13.gif" alt="Story 2 Image">
+    </section>
+    
+    <section id="story3">
+        <h2> 📖📚Mystery </h2>
+         <em>Underloading </em>....<i>paying more in shipping costs.... </i><br>
+        <p>7 Best Mystery Books to Read Right Now (According to Mystery Experts) · 1. All The Devils Are Here by Louise Penny · 2. The Beast Must Die by Nicholas Blake · 3 ....</p>
+        <img src="Bees15.gif" alt="Story 3 Image">
+    </section>
+    
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="search" id="search-input" placeholder="Search for a story...">
+        <button id="search-btn">Search</button>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Short Stories Robi Website</p>
+    </footer>
+    
+    <!-- JavaScript Code -->
+    <script src="script.js"></script>
+</body>
+</html>
